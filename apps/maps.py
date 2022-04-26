@@ -1,4 +1,4 @@
-#import lingtypology
+import lingtypology
 import streamlit as st
 import streamlit.components.v1 as components
 from .database_utils import get_db
