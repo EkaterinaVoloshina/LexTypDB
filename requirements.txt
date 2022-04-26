@@ -2,3 +2,4 @@ pandas
 pymongo
 lingtypology
 streamlit_authenticator
+pymongo[srv]
