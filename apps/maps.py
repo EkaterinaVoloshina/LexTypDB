@@ -17,6 +17,6 @@ def app():
             languages = [result['lang'] for result in results]
         else:
             languages = db.languages.find().distinct('lang')
-        #m = lingtypology.LingMap(languages)
-       # m.save('map.html')
-       # components.html(open('map.html', 'r', encoding='utf-8').read(), height=500, width=1500)
+        m = lingtypology.LingMap(languages)
+        m.save('map.html')
+        components.html(open('map.html', 'r', encoding='utf-8').read(), height=500, width=1500)
