@@ -43,7 +43,6 @@ def app():
     button = st.button("Search")
     if button:
         res = list(fulltext_search(db, text, verb, language, field, frames, context))
-        st.code(verb, language)
         if len(res) == 0:
             st.markdown("Нет результатов")
         else:
