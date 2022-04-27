@@ -1,5 +1,5 @@
 import streamlit as st
-from database_utils import add_data, init_connection
+from .database_utils import add_data, init_connection
 
 
 def app():
