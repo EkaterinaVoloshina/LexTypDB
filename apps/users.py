@@ -5,7 +5,7 @@ from .database_utils import add_data, init_connection
 def app():
     login = st.text_input("Login:")
     access_token = st.text_input("Password:", type="password")
-    if access_token != st.secrets["users"][login]:
+    if login and access_token != st.secrets["users"][login]:
         st.write("Sorry, your token is invalid. Please try again or contact the administrator.")
     else:
         col1, col2 = st.columns([1, 8])
