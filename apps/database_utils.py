@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def init_connection():
-    client = pymongo.MongoClient(**st.secrets["mongo"])
+    client = pymongo.MongoClient(st.secrets["mongo"]["key"])
     db = client.lextyp
     return db
 
