@@ -1,12 +1,9 @@
 import streamlit as st
-from .utils import *
+from .database_utils import *
 import pymongo
 
 def app():
-    mongo = "mongodb+srv://dep:utJyKHbMFwNACwwl@cluster0.e1rwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-    client = pymongo.MongoClient(mongo)
-    db = client.lextyp
-
+    db = init_connection()
     st.subheader('Поиск по примерам')
     text = st.text_input(
         label='',
@@ -19,8 +16,6 @@ def app():
         options=sorted(db.fields.find().distinct("field")),
         #               key=lambda x: x.split()[-1]),
     )
-
-
     col1, col2 = st.columns([5, 5])
     with col1:
         language = st.multiselect(
