@@ -5,9 +5,7 @@ from .database_utils import add_data, init_connection
 def app():
     login = st.text_input("Login:")
     access_token = st.text_input("Password:", type="password")
-    if login and access_token != st.secrets["users"][login]:
-        st.write("Sorry, your token is invalid. Please try again or contact the administrator.")
-    else:
+    if login and access_token == st.secrets["users"][login]:
         col1, col2 = st.columns([1, 8])
         with col2:
                 st.header('Редактор базы данных')
@@ -21,3 +19,5 @@ def app():
             add_data(db, upload_file)
         else:
             st.markdown('Ничего не загружено или загружен неправильный файл')
+    else:
+        st.write("Sorry, your token is invalid. Please try again or contact the administrator.")
