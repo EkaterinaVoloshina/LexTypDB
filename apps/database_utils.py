@@ -94,7 +94,7 @@ def add_data(db, df):
 
 def find_languages(db, name):
     res = db.fields.aggregate([
-                        {'$match': {'field': name}},
+                        {'$match': {'field': {"$in": name}}},
                         {'$lookup': {
                             'from': 'verbs',
                             'localField': '_id',
