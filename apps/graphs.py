@@ -1,5 +1,5 @@
 import streamlit as st
-from database_utils import init_connection, find_sem_maps
+from .database_utils import init_connection, find_sem_maps
 import networkx as nx
 from collections import Counter
 import matplotlib.pyplot as plt
