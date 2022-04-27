@@ -5,15 +5,14 @@ from .database_utils import init_connection, find_languages
 
 def app():
     db = init_connection()
-    languages = list(db.languages.find().distinct('lang'))
-    options = languages.append("all")
-    name = st.selectbox(
+    languages = db.languages.find().distinct('lang')
+    name = st.multiselect(
         label='Язык:',
         options=options
     )
     button = st.button("Search")
     if button:
-        if name != 'all':
+        if name:
             results = find_languages(db, name)
             languages = [result['lang'] for result in results]
         m = lingtypology.LingMap(languages)
