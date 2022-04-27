@@ -5,7 +5,7 @@ from collections import Counter
 import matplotlib.pyplot as plt
 
 
-def get_edges(results):
+def get_edges(results, parameter):
     edges = []
     for i in results:
         for context in i[parameter]:
@@ -38,7 +38,7 @@ def app():
     button = st.button("Search")
     if button:
         results = find_sem_maps(db, language, field)
-        edges = get_edges(results)
+        edges = get_edges(results, parameter)
         G = nx.Graph()
         for string, num in Counter(edges).items():
             G.add_edge(*string.split('+'), weight=num)
