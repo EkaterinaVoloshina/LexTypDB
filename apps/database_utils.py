@@ -4,8 +4,7 @@ import streamlit as st
 
 
 def init_connection():
-    mongo = "mongodb+srv://dep:utJyKHbMFwNACwwl@cluster0.e1rwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-    client = pymongo.MongoClient(mongo)
+    client = pymongo.MongoClient(**st.secrets["mongo"])
     db = client.lextyp
     return db
 
