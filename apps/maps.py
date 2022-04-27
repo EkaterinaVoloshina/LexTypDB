@@ -8,7 +8,7 @@ def app():
     languages = db.languages.find().distinct('lang')
     name = st.multiselect(
         label='Язык:',
-        options=options
+        options=languages
     )
     button = st.button("Search")
     if button:
