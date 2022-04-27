@@ -33,7 +33,7 @@ def app():
     with col1:
         frames = st.multiselect(
             label='Фреймы:',
-            options=sorted(db.fields.find().distinct("fields.frame")),
+            options=sorted(db.frames.find().distinct("frame")),
         )
     with col2:
         context = st.multiselect(
