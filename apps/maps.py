@@ -5,7 +5,7 @@ from .database_utils import init_connection, find_languages
 
 def app():
     db = init_connection()
-    name = st.selectbox(
+    name = st.multiselect(
         label='Поле:',
         options=db.fields.find().distinct('field'),
         )
