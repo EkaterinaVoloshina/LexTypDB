@@ -13,7 +13,6 @@ def app():
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
         st.write('Добро пожаловать, *%s*' % name)
-        db = init_connection()
         col1, col2 = st.columns([1, 8])
         with col2:
             st.header('Редактор базы данных')
@@ -23,6 +22,7 @@ def app():
                 unsafe_allow_html=True)
         upload_file = st.file_uploader('Выберите файл')
         if (upload_file is not None) and upload_file.name.endswith(".csv"):
+            db = init_connection()
             add_data(db, upload_file)
         else:
             st.markdown('Ничего не загружено или загружен неправильный файл')
