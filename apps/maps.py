@@ -1,4 +1,5 @@
 import lingtypology
+import os
 import streamlit as st
 import streamlit.components.v1 as components
 from .database_utils import init_connection, find_languages
@@ -9,7 +10,6 @@ def app():
         label='Поле:',
         options=db.fields.find().distinct('field'),
         )
-    st
     button = st.button("Search")
     if button:
         if name:
@@ -19,4 +19,7 @@ def app():
             languages = db.languages.find().distinct('lang')
         m = lingtypology.LingMap(languages)
         m.save('map.html')
+    if "map.html" in os.listdir():
         components.html(open('map.html', 'r', encoding='utf-8').read(), height=300, width=500)
+    else:
+        st.markdown("Generate a map")

@@ -247,3 +247,28 @@ def fulltext_search(db, text, verb, language, field,
                     },
                 ])
     return results
+
+
+def fill_in_form(form_name, language_data=dict()):
+    with st.form(form_name):
+        lang = st.text_input("Language: ")
+        field = st.text_input("Field: ")
+        frame = st.text_input("Frame: ")
+        context = st.text_input("Context: ")
+        verb = st.text_input("Verb: ")
+        example = st.text_input("Example: ")
+        translation = st.text_input("Translation: ")
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            language_data["Language"] = lang
+            language_data["Field"] = field
+            language_data["Frame"] = frame
+            language_data["Context"] = context
+            language_data["Verb"] = verb
+            language_data["Example"] = example
+            language_data["Translation"] = translation
+            st.text("Added")
+            sl_value = st.ratio("One more example?", ["Yes", "No"])
+            if sl_value == "Yes":
+                fill_in_form("my_form", language_data)
+            return language_data
