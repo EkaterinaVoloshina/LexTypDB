@@ -42,7 +42,7 @@ def app():
                         add_data(db, upload_file)
                     else:
                         missing_cols = set(columns).difference(set(upload_file.columns))
-                        st.markdown(f"The columns {*missing_cols} are missing. Upload a new file.")
+                        st.markdown(f"The columns {', '.join(missing_cols)} are missing. Upload a new file.")
                 else:
                     st.markdown('Ничего не загружено или загружен неправильный файл')
         else:
