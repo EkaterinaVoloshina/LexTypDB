@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,600,700" rel="stylesheet" />
+    <link href="../static/css/main.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+  
+	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="about_project.html">LexTyp</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+		  <li class="nav-item">
+			<a class="nav-link" href="/">Search</span></a>
+		  </li>
+		  <li class="nav-item active">
+			<a class="nav-link" href="/semantic_fields">SemFields</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/visualisation">SemMaps</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/forms">Contribute</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/log_in">Log in</a>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+	
+    <div class="s009">
+      <form action="get_field">
+        <div class="inner-form semfield_search">
+          <div class="advance-search">
+            <span class="desc">FIELD DETAILED INFORMATION</span>
+            <div class="row third">
+              <div class="input-field">
+			  <div class="input-select">
+                  <select data-trigger="" name="field">
+                    <option placeholder="" value="">Semantic field</option>
+					{% for field in fields %}
+                        <option value="{{ field }}">{{ field }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="group-btn">
+                  <button class="btn-delete" id="delete">RESET</button>
+                  <button class="btn-delete" type="submit">SEARCH</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+	</div>
+    <script src="../static/js/extention/choices.js"></script>
+    <script>
+      const customSelects = document.querySelectorAll("select");
+      const deleteBtn = document.getElementById('delete')
+      const choices = new Choices('select',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+        removeItemButton: true,
+      });
+      deleteBtn.addEventListener("click", function(e)
+      {
+        e.preventDefault()
+        const deleteAll = document.querySelectorAll('.choices__button')
+        for (let i = 0; i < deleteAll.length; i++)
+        {
+          deleteAll[i].click();
+        }
+      });
+
+    </script>
+  </body>
+</html>

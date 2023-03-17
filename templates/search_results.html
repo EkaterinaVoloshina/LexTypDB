@@ -1,0 +1,178 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,600,700" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='../static/css/main.css')}}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+  
+	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="about_project.html">LexTyp</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+		  <li class="nav-item active">
+			<a class="nav-link" href="/index">Search</span></a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/semantic_fields">SemFields</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/visualisation">SemMaps</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/forms">Contribute</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/log_in">Log in</a>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+
+    <div class="s009">
+      <form action="/process_data">
+        <div class="inner-form">
+          <div class="basic-search">
+            <div class="input-field">
+              <input id="search" type="text" placeholder="Type keywords" />
+              <div class="icon-wrap">
+                <svg class="svg-inline--fa fa-search fa-w-16" fill="#ccc" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="advance-search">
+            <span class="desc">ADVANCED SEARCH</span>
+            <div class="row">
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="field">
+                    <option placeholder="" value="">Semantic field</option>
+                      {% for field in fields %}
+                        <option value="{{ field }}">{{ field }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="language">
+                    <option placeholder="" value="">Language</option>
+                      {% for language in languages %}
+                        <option value="{{ language }}">{{ language }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="verb">
+                    <option placeholder="" value="">Verbs</option>
+                      {% for verb in verbs %}
+                        <option value="{{ verb }}">{{ verb }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row second">
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="frame">
+                    <option placeholder="" value="">Frames</option>
+                      {% for frame in frames %}
+                        <option value="{{ frame }}">{{ frame }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="context">
+                    <option placeholder="" value="">Context</option>
+                      {% for context in contexts %}
+                        <option value="{{ context }}">{{ context }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="choices-single-defaul">
+                    <option placeholder="" value="">Type</option>
+                    <option>Subject b</option>
+                    <option>Subject c</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row third">
+              <div class="input-field">
+                <div class="result-count">
+                  <span> {{ num_results }} </span>results</div>
+                <div class="group-btn">
+                  <button class="btn-delete" id="delete">RESET</button>
+                  <button class="btn-delete" type="submit">SEARCH</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+	<div class="savebar">
+	  <p>Save as: <a href="#">csv</a>;	<a href="#">html</a>;	<a href="#">xslx</a></p>
+	</div>
+     {% for result in results %}
+        <div class="s010">
+          <div class="fieldcard">
+            <h5> {{ result['languages']['verb'] }} ({{ result['languages']['language'] }})</h5>
+            <br>
+            <p> {{ result["examples"]["example"] }}</p>
+            <p> {{ result["examples"]["translation"] }}</p>
+            <br>
+            <p> Context: {{ result['frames']['context'] }}.</p>
+            <p> Frame: {{ result['frames']['frame'] }}</p>
+            <p> Field: {{ result['frames']['field'].upper() }}</p>
+            <p> Source: {{ result['examples']['source'] }} </p>
+
+          </div>
+        </div>
+     <br>
+	<br>
+	<br>
+     {% endfor %}
+
+
+	
+    <script src="../static/js/extention/choices.js"></script>
+    <script>
+      const customSelects = document.querySelectorAll("select");
+      const deleteBtn = document.getElementById('delete')
+      const choices = new Choices('select',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+        removeItemButton: true,
+      });
+      deleteBtn.addEventListener("click", function(e)
+      {
+        e.preventDefault()
+        const deleteAll = document.querySelectorAll('.choices__button')
+        for (let i = 0; i < deleteAll.length; i++)
+        {
+          deleteAll[i].click();
+        }
+      });
+
+    </script>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

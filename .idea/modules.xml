@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LexTypDB.iml" filepath="$PROJECT_DIR$/.idea/LexTypDB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lextyp_base.iml" filepath="$PROJECT_DIR$/.idea/lextyp_base.iml" />
     </modules>
   </component>
 </project>

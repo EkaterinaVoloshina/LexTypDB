@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,600,700" rel="stylesheet" />
+	  <link href="{{ url_for('static', filename='../static/css/main.css')}}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+  
+	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="about_project.html">LexTyp</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+		  <li class="nav-item">
+			<a class="nav-link" href="/index">Search</span></a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/semantic_fields">SemFields</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/visualisation">SemMaps</a>
+		  </li>
+		  <li class="nav-item active">
+			<a class="nav-link" href="/forms">Contribute</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/log_in">Log in</a>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+	<form class="fillin" action="generate_form">
+	  <div class="form-group">
+		<label for="exampleFormControlInput1">Contacts:</label>
+		<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="contact">
+	  </div>
+	  <div class="form-group">
+		<label for="exampleFormControlSelect1">Semantic field:</label>
+		<select class="form-control" name="field">
+		  {% for field in fields %}
+                        <option value="{{ field }}">{{ field }}</option>
+			{% endfor %}
+		</select>
+	  </div>
+	  <div class="form-group">
+		<label for="exampleFormControlInput1">Language:</label>
+		<select class="form-control" name="language">
+		  {% for language in languages %}
+			<option value="{{ language }}">{{ language }}</option>
+			{% endfor %}
+		</select>
+	  </div>
+	  <button class="btn btn-primary" name="button" value="table">Upload a table</button>
+	  <button class="btn btn-primary" name="button" value="survey">Fill in a form</button>
+	</form>
+	<br>
+	<br>
+	<br>
+	
+  </body>
+</html>

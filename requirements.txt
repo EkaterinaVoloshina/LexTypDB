@@ -1,6 +1,0 @@
-pandas
-pymongo
-lingtypology
-pymongo[srv]
-matplotlib
-networkx
